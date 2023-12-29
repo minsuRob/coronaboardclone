@@ -1,16 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {sequelize} = require('./database');
-const { getAll, insertOrUpdate, remove } = require('./controller/global-stat.controller');
+const gStatController = require('./controller/global-stat.controller');
 
 async function launchServer() {
     const app = express();
 
     app.use(bodyParser.json());
 
-    app.get('/global-stats', getAll);
-    app.post('/global-stats', insertOrUpdate);
-    app.delete('/global-stats', remove);
+    app.get('/global-stats', gStatController.getAll);
+    app.post('/global-stats', gStatController.insertOrUpdate);
+    app.delete('/global-stats', gStatController.remove);
 
     try {
         await sequelize.sync();
