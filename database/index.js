@@ -3,9 +3,14 @@ const config = {
     host: process.env.HOST || '127.0.0.1',
     port: 3306,
     database: 'coronaboard',
+    user: 'coronaboard_admin',
+    password: process.env.CORONABOARD_MYSQL_PASSWORD || '1234',
 }
 
-const sequelize = new Sequelize(config.database);
+const sequelize = new Sequelize(config.database, config.user, config.password, {
+    host: config.host,
+    dialect: 'mysql',
+});
 
 module.exports = {
     sequelize,
