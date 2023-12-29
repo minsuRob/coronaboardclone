@@ -1,16 +1,28 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {sequelize} = require('./database');
 
-const app = express();
+async function launchServer() {
+    const app = express();
 
-app.use(bodyParser.json());
+    app.use(bodyParser.json());
 
-app.get('', (req, res)=> {
-    res.json(({message : "hello cororong"}));
-});
+    app.get('', (req, res)=> {
+        res.json(({message : "hello cororong"}));
+    });
 
-const port = process.env.PORT || 8080;
+    try {
+        await sequelize.sync();
+    } catch (error) {
+        console.log(error);
+        process.exit(1);        
+    }
 
-app.listen(port, () => {
-    console.log(`server port is ${port}`);
-});
+    const port = process.env.PORT || 8080;
+
+    app.listen(port, () => {
+        console.log(`server port is ${port}`);
+    });
+}
+
+launchServer();
