@@ -6,7 +6,7 @@ export default function Home() {
   return (<div>
     <h1>야로나보드</h1>
     <Slide title="국가 별 상황"> 국가별 현황</Slide>
-  <Slide title={"국가 별 상황"}> 국가별 현황</Slide>
+  <Slide title={"국가 별 상황"}> 국가별 현황1 오호</Slide>
     <Slide title={thirdSlideTitle}> 국가별 현황</Slide>
   </div>)
 }
