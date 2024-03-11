@@ -22,7 +22,7 @@ async function generateGlobalStats() {
     });
 
     const response = await apiClient.get('global-stas');
-    const groupByDate = _.groupBy(response.data.result, 'date');
+    const groupByDate = _.groupBy(response.data.result, 'date'); 
 
     const now = new Date('2021-06-05');
     const timeZone = 'Asia/Seoul';
@@ -42,6 +42,29 @@ async function generateGlobalStats() {
     )
 
 }
+
+function createGlobalStatWithPrevField(todayStats, yesterdayStats) {
+    const yesterdayStatsByCc = _.keyBy(yesterdayStats, 'cc');
+  
+    const globalStatWithPrev = todayStats.map((todayStat) => {
+      const cc = todayStat.cc;
+      const yesterdayStat = yesterdayStatsByCc[cc];
+      if (yesterdayStat) {
+        return {
+          ...todayStat,
+          confirmedPrev: yesterdayStat.confirmed || 0,
+          deathPrev: yesterdayStat.death || 0,
+          negativePrev: yesterdayStat.negative || 0,
+          releasedPrev: yesterdayStat.released || 0,
+          testedPrev: yesterdayStat.tested || 0,
+        };
+      }
+  
+      return todayStat;
+    });
+  
+    return globalStatWithPrev;
+  }
 
     
 
