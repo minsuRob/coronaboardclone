@@ -1,10 +1,13 @@
 import React from 'react';
 import { Slide } from '../components/slide';
 
-export default function SinglePage({pageContext}) {
+export default function SinglePage({ pageContext }) {
     const {dataSource} = pageContext;
     // const {thirdSlideTitle} = dataSource;
+    // const {countryByCc, globalStats} = dataSource;
 
+    // console.log(countryByCc);
+    // console.log(globalStats);
     return (
         <div>
             <h1>야로나!!보드</h1>
