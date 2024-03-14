@@ -21,7 +21,7 @@ async function generateGlobalStats() {
         baseURL: process.env.CORONABOARD_API_BASE_URL || 'http://localhost:8080',
     });
 
-    const response = await apiClient.get('global-stas');
+    const response = await apiClient.get('global-stats');
     const groupByDate = _.groupBy(response.data.result, 'date'); 
 
     const now = new Date('2021-06-05');
