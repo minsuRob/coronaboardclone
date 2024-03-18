@@ -27,13 +27,46 @@ class DomesticCrawler{
         }
     }
 
-    _extractBasicStat() {
+    _extractBasicStat($) {
+        let result = null;
+        const titles = $('h5.s_title_in3');
+        titles.each((i, el) => {
+            const titleTextEl = $(el).contents().toArray().filter(
+                (x) => x.type === 'text');
+        
 
+        if ($(titleTextEL).text().trim()=== '누적 검사현황') {
+            const tableEl = $(el).next();
+            
+            if(!tableEl) {
+                throw new Error('table not found');
+            }
+            const cellEls =  tableEl.find('tbody tr td');
+
+            const value = cellEls.toArray().map((node => this._nomalize($(node).text)));
+
+            result = {
+                confirmed: values[3],
+                released: values[1],
+                death: values[2],
+                tested: values[5],
+                testing: values[6],
+                negative: values[4],
+            }
+        }
+    });
+
+        if (result == null) {
+            throw new Error("data not found");
+        }
+
+        return result;
     }
-    _extractAge() {
+
+    _extractAge($) {
         
     }
-    _extractSex() {
+    _extractSex($) {
     }
 
     // text to integer
