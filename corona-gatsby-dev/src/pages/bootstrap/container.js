@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { css } from '@emotion/react';
 
 const borderedGrid = css`
@@ -16,6 +16,19 @@ export default function ContainerPage() {
   return (
     <div className="pt-3" css={borderedGrid}>
       <h2>화면 너비에 따른 컨테이너 너비 비교</h2>
+      <Container>
+        <Row>
+          <Col xs={3}>.col 1/2</Col>
+          <Col xs={6}>.col 2/2</Col>
+          <Col xs={3}>.col 2/23</Col>
+        </Row>
+        <Row>
+          <Col sm>.col 1/3</Col>
+          <Col sm>.col 2/3</Col>
+          <Col sm>.col 3/3</Col>
+        </Row>
+      </Container>
+
       <Container>.container</Container>
       <Container fluid="sm">.container-sm</Container>
       <Container fluid="md">.container-md</Container>
