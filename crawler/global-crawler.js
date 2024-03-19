@@ -24,7 +24,7 @@ class GlobalCrawler{
         const resp = await this.client.get(url);
         const $ = cheerio.load(resp.data);
 
-        // return this.
+        return this._extractStatByCountry($);
     }
 
     _extractStatByCountry($) {
@@ -37,7 +37,7 @@ class GlobalCrawler{
         $('#main_table_countries_today tbody tr').each((i, tr) => {
             const row = $(tr).find('td')
             .map((j, td) => {
-                return $(td).text.trim();
+                return $(td).text().trim();
             }).toArray();
             rows.push(row);
         });
