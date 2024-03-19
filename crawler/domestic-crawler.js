@@ -90,18 +90,21 @@ class DomesticCrawler{
     _extractDataWithMapping(mapping, $) {
         const result = {};
 
-        $('.data_table table').each((i, el)=> {
-            $(el).find('tbody tr')
-            .each((j, row) => {
+        $('.data_table table').each((i, el) => {
+            $(el)
+              .find('tbody tr')
+              .each((j, row) => {
                 const cols = $(row).children();
                 _.forEach(mapping, (fieldName, firstColumnText) => {
+                  if ($(cols.get(0)).text() === firstColumnText) {
                     result[fieldName] = {
-                        confirm: this._normalize($(cols.get(1)).text()),
-                        death: this._normalize($(cols.get(2)).text()),
-                    }
-                })
-            })
-        })
+                      confirmed: this._normalize($(cols.get(1)).text()),
+                      death: this._normalize($(cols.get(2)).text()),
+                    };
+                  }
+                });
+              });
+          });
 
 
         if (_.isEmpty(result)) {

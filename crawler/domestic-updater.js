@@ -42,7 +42,7 @@ async function crawlAndUpdateDomestic(outputPath, apiClient) {
         negative,
     } = newDomesticStat.basicStats;
     
-    await apiClient.upserertGlobalStat({
+    await apiClient.upsertGlobalStat({
         cc: 'KR',
         date: crawledDate,
         confirmed,
