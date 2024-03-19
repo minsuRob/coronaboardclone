@@ -43,7 +43,8 @@ class DomesticCrawler{
             }
             const cellEls =  tableEl.find('tbody tr td');
 
-            const values = cellEls.toArray().map((node => this._normalize($(node).text)));
+            const values = cellEls.toArray()
+            .map((node => this._normalize($(node).text())));
 
             result = {
                 confirmed: values[3],

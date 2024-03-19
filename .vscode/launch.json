@@ -7,11 +7,22 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "node debug",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/index.js"
+        },
+        
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "crawler debug",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/crawler/index.js"
         }
     ]
 }
