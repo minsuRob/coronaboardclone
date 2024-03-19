@@ -28,6 +28,59 @@ class GlobalCrawler{
     }
 
     _extractStatByCountry($) {
+        const colNames = $('#main_table_countries_today thead tr th')
+        .map((i, th) => {
+            return $(th).text().trim();
+        }).toArray();
+
+        const rows = [];
+        $('#main_table_countries_today tbody tr').each((i, tr) => {
+            const row = $(tr).find('td')
+            .map((j, td) => {
+                return $(td).text.trim();
+            }).toArray();
+            rows.push(row);
+        });
+
+        if (rows.length === 0 ) { 
+            throw new Error('country rows not found.');
+        }
+        
+            // 월도미터의 컬럼 이름을 API에서 사용하는 필드 이름으로 매핑
+        const colNameToFieldMapping = {
+            'Country,Other': 'title',
+            TotalCases: 'confirmed',
+            TotalDeaths: 'death',
+            TotalRecovered: 'released',
+            TotalTests: 'tested',
+        };
+
+        const normalizeData = rows.map((row) => {
+            const countryStat = {};
+            for (let i = 0; i < colNames.length; i++) {
+                const colName = colNames[i];
+                const fieldName = colNameToFieldMapping[colName];
+
+                if (!fieldName) {continue;}
+
+                const numberFields = ['confirmed', 'death', 'released', 'tested'];
+
+                if (numberFields.includes(fieldName)) {
+                    countryStat[fieldName] = this._normalize(row[i]);
+                } else {
+                    countryStat[fieldName] = row[i];
+                }
+            }
+            return countryStat;
+        })
+        .filter((countryStat)=> this.countryMapping[countryStat.title])
+        .map((countryStat)=> ({
+            ...countryStat,
+            cc: this.countryMapping[countryStat.title],
+        }));
+
+        return _.keyBy(normalizeData, 'cc');
+  
 
     }
 
