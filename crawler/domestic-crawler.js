@@ -35,7 +35,7 @@ class DomesticCrawler{
                 (x) => x.type === 'text');
         
 
-        if ($(titleTextEL).text().trim()=== '누적 검사현황') {
+        if ($(titleTextEl).text().trim()=== '누적 검사현황') {
             const tableEl = $(el).next();
             
             if(!tableEl) {
@@ -43,7 +43,7 @@ class DomesticCrawler{
             }
             const cellEls =  tableEl.find('tbody tr td');
 
-            const value = cellEls.toArray().map((node => this._normalize($(node).text)));
+            const values = cellEls.toArray().map((node => this._normalize($(node).text)));
 
             result = {
                 confirmed: values[3],
@@ -113,6 +113,7 @@ class DomesticCrawler{
 
     // text to integer
     _normalize(numberText) {
+        console.log(`${numberText} numberText`)
         const matches = /[0-9]+/.exec(numberText);
         const absValue = matches[0];
         

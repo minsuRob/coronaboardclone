@@ -21,7 +21,7 @@ async function crawlAndUpdateDomestic(outputPath, apiClient) {
     const crawledDate = format(utcToZonedTime(now, timeZone), 'yyyy-MM-dd');
 
     const newData = {
-        crawleDate,
+        crawledDate,
         domesticStat: await domesticCrawler.crawlStat(),
     };
 
