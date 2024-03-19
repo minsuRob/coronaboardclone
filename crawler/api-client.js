@@ -13,7 +13,7 @@ class ApiClient {
         this.client = client;
     }
 
-    async upsertGlobalStat(key, value) {
+    async upsertGlobalStat(data) {
         return await this.client.post('global-stats', data);
     }
 
