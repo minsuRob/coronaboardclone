@@ -23,6 +23,10 @@ class ApiClient {
             value,
         });
     }
+
+    async findAllGlobalStat() {
+        return await this.client.get('global-stats');
+    }
 }
 
 module.exports = ApiClient;

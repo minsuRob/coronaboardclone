@@ -5,3 +5,5 @@ tools/downloaded
 corona-gatsby-dev/src/.DS_Store
 crawler/output/domestic-stat.json
 output/domestic-stat.json
+output/global-stat.json
+crawler/output/global-stat.json
