@@ -116,8 +116,8 @@ class DomesticCrawler{
 
     // text to integer
     _normalize(numberText) {
-        console.log(`${numberText} numberText`)
-        const matches = /[0-9]+/.exec(numberText);
+        // console.log(`${numberText} numberText`)
+        const matches = /[0-9,]+/.exec(numberText);
         const absValue = matches[0];
         
         return parseInt(absValue.replace(/[\s,]*/g, ''));
