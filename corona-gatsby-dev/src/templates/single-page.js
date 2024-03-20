@@ -13,7 +13,7 @@ const { format, utcToZonedTime} = require('date-fns-tz');
 
 async function generateGlobalStats() {
     const apiClient = axios.create({
-        baseURL:'http://localhost:8080/',
+      baseURL: process.env.CORONABOARD_API_BASE_URL || 'http://localhost:8080',
     });
 
     const response = await apiClient.get('global-stats');
