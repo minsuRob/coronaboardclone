@@ -10,9 +10,11 @@ const ApiClient = require('./api-client');
 
 async function getDataSource() {
     const countryByCc = _.keyBy(countInfo, 'cc');
-    const globalStats = await generateGlobalStats();
-    
+    const apiClient = new ApiClient();
+
     const allGlobalStats = await apiClient.getAllGlobalStats();
+    const globalStats = await generateGlobalStats(allGlobalStats);
+    
     const groupByDate = _.groupBy(allGlobalStats, 'date');
 
     return {
@@ -22,7 +24,7 @@ async function getDataSource() {
     };
 }
 
-async function generateGlobalStats() {
+async function generateGlobalStats(groupByDate) {
     // const apiClient = axios.create({
     //     baseURL: process.env.CORONABOARD_API_BASE_URL || 'http://localhost:8080',
     // });
