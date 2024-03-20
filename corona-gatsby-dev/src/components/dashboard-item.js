@@ -6,15 +6,30 @@ import {formatDiff, numberWithCommas} from '../utils/formatter';
 export function DashboardItem(props) {
     const {text, current, prev, diffColor, unit} = props;
     const finalDiffColor = diffColor ? diffColor : 'red';
-    const formatNumber = unit === 'percent' ? `${current.toFixed(2)%}` : numberWithCommas(current);
+    const formatNumber = unit === 'percent' ? `${current.toFixed(2)}%` : numberWithCommas(current);
 
     return (
-        <div>
-            <p>
+        <div css={css`
+            font-size: 15px;
+            position: relative;
+            `}>
+            <p css={css`
+                font-size: 22px;
+                font-weight:500;
+                @media (max-width:576px){
+                    font-size:20px;
+                }
+            `}>
                 {formatNumber};
             </p>
             {prev ? (
-                <p>{formatDiff(current, prev)}</p>
+                <p css={css`
+                    position: absolute;
+                    top: 24px;
+                    width: 100%;
+                    color: ${finalDiffColor}
+                `}
+                >{formatDiff(current, prev)}</p>
             ) : null }
             <p>{text}</p>
         </div>
