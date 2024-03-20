@@ -8,6 +8,8 @@ const countInfo = require('../../tools/downloaded/countryInfo.json');
 
 const ApiClient = require('./api-client');
 
+const notice = require('../../tools/downloaded/notice.json');
+
 async function getDataSource() {
     const countryByCc = _.keyBy(countInfo, 'cc');
     const apiClient = new ApiClient();
@@ -21,6 +23,7 @@ async function getDataSource() {
       lastUpdated: Date.now(),
       globalStats,
       countryByCc,
+      notice: notice.filter((x) => !x.hidden),
     };
 }
 

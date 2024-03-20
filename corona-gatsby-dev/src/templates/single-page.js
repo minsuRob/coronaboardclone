@@ -2,6 +2,7 @@ import React from 'react';
 import { Slide } from '../components/slide';
 import { getDataSource } from '../data-loader';
 import {Dashboard} from '../components/dashboard';
+import { Notice } from '../components/notice';
 
 const axios = require('axios');
 const _ = require("lodash");
@@ -73,9 +74,7 @@ export default function SinglePage({ pageContext }) {
     
 
     // const {thirdSlideTitle} = dataSource;
-    const {countryByCc, globalStats} = dataSource;
-    console.log(countryByCc);
-    console.log(globalStats);
+    const {countryByCc, globalStats, notice} = dataSource;
 
     return (
         <div>
@@ -84,6 +83,7 @@ export default function SinglePage({ pageContext }) {
             <Slide title="국가 별 상황"> 국가별 현황</Slide>
             <Slide title={"국가 별 상황"}> 국가별 현황1 오호1</Slide>
             <Dashboard globalStats={globalStats}/>
+            <Notice notice={notice}/>
     {/* <Slide title={thirdSlideTitle}> 국가별 현황</Slide> */}
         </div>
     )
