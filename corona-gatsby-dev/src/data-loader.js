@@ -6,23 +6,29 @@ const _ = require("lodash");
 const countInfo = require('../../tools/downloaded/countryInfo.json');
 
 
+const ApiClient = require('./api-client');
+
 async function getDataSource() {
     const countryByCc = _.keyBy(countInfo, 'cc');
     const globalStats = await generateGlobalStats();
     
+    const allGlobalStats = await apiClient.getAllGlobalStats();
+    const groupByDate = _.groupBy(allGlobalStats, 'date');
+
     return {
-        globalStats,
-        countryByCc,
+      lastUpdated: Date.now(),
+      globalStats,
+      countryByCc,
     };
 }
 
 async function generateGlobalStats() {
-    const apiClient = axios.create({
-        baseURL: process.env.CORONABOARD_API_BASE_URL || 'http://localhost:8080',
-    });
+    // const apiClient = axios.create({
+    //     baseURL: process.env.CORONABOARD_API_BASE_URL || 'http://localhost:8080',
+    // });
 
-    const response = await apiClient.get('global-stats');
-    const groupByDate = _.groupBy(response.data.result, 'date'); 
+    // const response = await apiClient.get('global-stats');
+    // const groupByDate = _.groupBy(response.data.result, 'date'); 
 
     const now = new Date('2021-06-05');
     const timeZone = 'Asia/Seoul';
