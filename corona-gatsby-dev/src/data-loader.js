@@ -13,9 +13,9 @@ async function getDataSource() {
     const apiClient = new ApiClient();
 
     const allGlobalStats = await apiClient.getAllGlobalStats();
-    const globalStats = await generateGlobalStats(allGlobalStats);
-    
     const groupByDate = _.groupBy(allGlobalStats, 'date');
+    const globalStats = await generateGlobalStats(groupByDate);
+    
 
     return {
       lastUpdated: Date.now(),

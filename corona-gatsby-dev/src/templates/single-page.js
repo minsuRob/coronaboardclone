@@ -1,6 +1,8 @@
 import React from 'react';
 import { Slide } from '../components/slide';
 import { getDataSource } from '../data-loader';
+import {Dashboard} from '../components/dashboard';
+
 const axios = require('axios');
 const _ = require("lodash");
 
@@ -80,7 +82,8 @@ export default function SinglePage({ pageContext }) {
             <h1>야로나!!보드</h1>
             <p>made by createPage</p>
             <Slide title="국가 별 상황"> 국가별 현황</Slide>
-      <Slide title={"국가 별 상황"}> 국가별 현황1 오호1</Slide>
+            <Slide title={"국가 별 상황"}> 국가별 현황1 오호1</Slide>
+            <Dashboard globalStats={globalStats}/>
     {/* <Slide title={thirdSlideTitle}> 국가별 현황</Slide> */}
         </div>
     )
