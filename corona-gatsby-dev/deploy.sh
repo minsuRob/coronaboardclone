@@ -23,7 +23,7 @@ aws s3 sync \
 --exclude "*" \
 --include "*.html" --include "*.json" \
 --delete \
-./public s3://coronaboard.kr
+./public s3://coronaboardclone
 
 # html, json을 제외한 모든 파일은 웹브라우저에서 1년간 캐시하도록 설정
 # 웹사이트 코드를 수정하다보면 js나 css 파일은 종종 바뀌는데 캐시해도 되는지?
@@ -36,4 +36,4 @@ aws s3 sync \
 --cache-control public,max-age=31536000,immutable \
 --exclude "*.html" --exclude "*.json" \
 --delete \
-./public s3://coronaboard.kr
+./public s3://coronaboardclone
