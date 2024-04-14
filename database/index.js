@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const config = {
-    host: process.env.HOST || '127.0.0.1',
+    host: process.env.CORONABOARD_MYSQL_HOST || '127.0.0.1',
     port: 3306,
     database: 'coronaboard',
     user: 'coronaboard_admin',
